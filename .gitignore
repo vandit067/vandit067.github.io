@@ -1,0 +1,6 @@
+# JetBrains IDE state — machine-specific, and this repo is served publicly
+.idea/
+*.iml
+
+# macOS
+.DS_Store
