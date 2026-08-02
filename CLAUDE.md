@@ -33,6 +33,20 @@ Four small vanilla-JS features, no framework:
 3. `IntersectionObserver` adds `.visible` to any element with class `reveal` (one-shot; it unobserves). New animated content must carry `class="reveal"` or it will stay invisible.
 4. A second `IntersectionObserver` highlights the active `.nav-links a` via inline `style.color`. Deliberately not a scroll handler — reading `offsetTop` per scroll event forced synchronous layout and caused mobile jank. Don't reintroduce that pattern.
 
+## Social share image
+
+`og-image.png` (1200×630) is the Open Graph / Twitter card image. It is **generated**, not hand-drawn: `og-image.html` is its source, rendered headless and screenshotted. To regenerate after editing that file:
+
+```
+python3 -m http.server 8765          # from the repo root
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
+  --virtual-time-budget=5000 --window-size=1200,630 \
+  --screenshot=og-image.png "http://localhost:8765/og-image.html"
+```
+
+Note that `--window-size` alone does **not** set the layout viewport for a top-level page in headless Chrome — it crops instead. When screenshotting `index.html` at a specific width (e.g. to check a breakpoint), load it inside a fixed-width `<iframe>` and screenshot that wrapper. The 1200×630 case above happens to match the default viewport, so it works directly.
+
 ## Content conventions
 
 Résumé content (experience entries, skills tags, project cards, contact links) is hardcoded HTML. Adding an item means duplicating an existing sibling card/tag and editing its text — keep the existing class names so the section's grid and reveal animation continue to apply.

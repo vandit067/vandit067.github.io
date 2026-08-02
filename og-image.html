@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #080D1A; --card: #141F35; --border: #1E2D47;
+    --blue: #3B82F6; --purple: #8B5CF6; --cyan: #22D3EE; --green: #10B981;
+    --text: #F1F5F9; --muted: #94A3B8;
+  }
+  body {
+    width: 1200px; height: 630px;
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    padding: 0 80px;
+  }
+  .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.28; }
+  .o1 { width: 620px; height: 620px; background: var(--blue);   top: -220px; left: -160px; }
+  .o2 { width: 520px; height: 520px; background: var(--purple); bottom: -200px; right: 120px; }
+  .o3 { width: 340px; height: 340px; background: var(--cyan);   top: 150px; right: -90px; }
+
+  .content { position: relative; z-index: 2; flex: 1; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(59,130,246,0.12);
+    border: 1px solid rgba(59,130,246,0.35);
+    border-radius: 50px; padding: 8px 20px;
+    font-size: 19px; font-weight: 500; color: var(--cyan);
+    margin-bottom: 28px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 82px; font-weight: 700; line-height: 1.05;
+    letter-spacing: -1px;
+  }
+  h1 span {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 55%, var(--cyan) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .role {
+    font-size: 30px; font-weight: 600; color: var(--cyan);
+    margin-top: 18px;
+  }
+  .desc {
+    font-size: 21px; color: var(--muted); line-height: 1.5;
+    margin-top: 18px; max-width: 620px;
+  }
+  .foot {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: 34px; font-size: 20px; font-weight: 500; color: var(--muted);
+  }
+  .foot b { color: var(--text); font-weight: 600; }
+  .sep { color: var(--border); }
+
+  .avatar-ring {
+    position: relative; z-index: 2;
+    width: 300px; height: 300px; border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(135deg, var(--blue), var(--purple), var(--cyan));
+    flex-shrink: 0;
+  }
+  .avatar-ring img {
+    width: 100%; height: 100%; border-radius: 50%;
+    object-fit: cover; display: block;
+    border: 6px solid var(--bg);
+  }
+</style>
+</head>
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+
+  <div class="content">
+    <div class="badge"><span class="dot"></span> Open to new opportunities</div>
+    <h1>Vanditkumar <span>Patel</span></h1>
+    <div class="role">Senior Android Developer &amp; Tech Lead</div>
+    <div class="desc">15+ years building high-performance Android apps for millions of users at Comcast &amp; Elsevier.</div>
+    <div class="foot">
+      <b>Kotlin</b> <span class="sep">·</span> <b>Jetpack Compose</b> <span class="sep">·</span> <b>Clean Architecture</b>
+    </div>
+  </div>
+
+  <div class="avatar-ring">
+    <img src="https://avatars.githubusercontent.com/u/11062076?v=4&s=460" alt="" />
+  </div>
+</body>
+</html>
