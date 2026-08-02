@@ -616,9 +616,6 @@
     }
     .contact-card:hover { border-color: var(--blue); transform: translateY(-3px); }
     .contact-card:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-color: var(--blue); }
-    /* The Location card is a plain div — don't imply it's actionable. */
-    .contact-card-static { cursor: default; }
-    .contact-card-static:hover { border-color: var(--border); transform: none; }
     .contact-card-icon { font-size: 1.5rem; }
     .contact-card-label { font-size: 0.75rem; color: var(--muted); }
     .contact-card-value { font-size: 0.9rem; font-weight: 500; color: var(--text); }
@@ -1244,12 +1241,11 @@
           <div class="contact-card-label">Email</div>
           <div class="contact-card-value">vanditpatel067@gmail.com</div>
         </a>
-        <!-- Not a link: location has no useful destination. -->
-        <div class="contact-card contact-card-static">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Philadelphia%2C+PA" target="_blank" rel="noopener" class="contact-card">
           <div class="contact-card-icon" aria-hidden="true">&#128205;</div>
           <div class="contact-card-label">Location</div>
           <div class="contact-card-value">Philadelphia, PA</div>
-        </div>
+        </a>
         <a href="https://www.linkedin.com/in/vanditkumarpatel/" target="_blank" rel="noopener" class="contact-card">
           <div class="contact-card-icon" aria-hidden="true">&#128188;</div>
           <div class="contact-card-label">LinkedIn</div>
