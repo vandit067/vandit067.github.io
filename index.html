@@ -615,6 +615,10 @@
       transition: border-color 0.2s, transform 0.2s;
     }
     .contact-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+    .contact-card:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-color: var(--blue); }
+    /* The Location card is a plain div — don't imply it's actionable. */
+    .contact-card-static { cursor: default; }
+    .contact-card-static:hover { border-color: var(--border); transform: none; }
     .contact-card-icon { font-size: 1.5rem; }
     .contact-card-label { font-size: 0.75rem; color: var(--muted); }
     .contact-card-value { font-size: 0.9rem; font-weight: 500; color: var(--text); }
@@ -1235,26 +1239,27 @@
       </p>
 
       <div class="contact-cards">
-        <div class="contact-card">
-          <div class="contact-card-icon">&#9993;</div>
+        <a href="mailto:vanditpatel067@gmail.com" class="contact-card">
+          <div class="contact-card-icon" aria-hidden="true">&#9993;</div>
           <div class="contact-card-label">Email</div>
           <div class="contact-card-value">vanditpatel067@gmail.com</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">&#128205;</div>
+        </a>
+        <!-- Not a link: location has no useful destination. -->
+        <div class="contact-card contact-card-static">
+          <div class="contact-card-icon" aria-hidden="true">&#128205;</div>
           <div class="contact-card-label">Location</div>
           <div class="contact-card-value">Philadelphia, PA</div>
         </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">&#128188;</div>
+        <a href="https://www.linkedin.com/in/vanditkumarpatel/" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-card-icon" aria-hidden="true">&#128188;</div>
           <div class="contact-card-label">LinkedIn</div>
           <div class="contact-card-value">in/vanditkumarpatel</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">&#128187;</div>
+        </a>
+        <a href="https://github.com/vandit067" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-card-icon" aria-hidden="true">&#128187;</div>
           <div class="contact-card-label">GitHub</div>
           <div class="contact-card-value">github.com/vandit067</div>
-        </div>
+        </a>
       </div>
 
       <a href="mailto:vanditpatel067@gmail.com" class="contact-cta">Send Me an Email</a>
