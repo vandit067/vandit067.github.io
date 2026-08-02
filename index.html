@@ -256,6 +256,12 @@
       flex-wrap: wrap;
       animation: fadeDown 0.8s ease 0.4s both;
     }
+    /* Three buttons wrap to an orphaned 2+1 between ~481px and ~530px, so
+       stack them before that band rather than at the usual 480px breakpoint. */
+    @media (max-width: 560px) {
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    }
     .btn-primary {
       padding: 13px 32px;
       background: linear-gradient(135deg, var(--blue), var(--purple));
@@ -721,8 +727,8 @@
       /* Hero */
       .hero-desc { font-size: 0.9rem; }
       .hero-badge { font-size: 0.72rem; padding: 5px 12px; }
-      .btn-primary, .btn-secondary { padding: 11px 24px; font-size: 0.875rem; width: 100%; text-align: center; }
-      .hero-btns { flex-direction: column; }
+      /* Stacking itself is handled by the ≤560px block near .hero-btns. */
+      .btn-primary, .btn-secondary { padding: 11px 24px; font-size: 0.875rem; }
 
       /* Sections */
       .section-title { font-size: 1.6rem; }
