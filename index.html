@@ -4,8 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vanditkumar Patel | Senior Android Developer &amp; Tech Lead</title>
+  <meta name="description" content="Vanditkumar Patel — Senior Android Developer &amp; Tech Lead with 15+ years building high-performance Android apps for millions of users at Comcast and Elsevier. Kotlin, Jetpack Compose, clean architecture." />
+  <meta name="author" content="Vanditkumar Patel" />
+  <link rel="canonical" href="https://vandit067.github.io/" />
+  <meta name="theme-color" content="#080D1A" />
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vandit067.github.io/" />
+  <meta property="og:site_name" content="Vanditkumar Patel" />
+  <meta property="og:title" content="Vanditkumar Patel | Senior Android Developer &amp; Tech Lead" />
+  <meta property="og:description" content="15+ years building high-performance Android apps for millions of users at Comcast and Elsevier. Kotlin, Jetpack Compose, clean architecture. Open to Senior &amp; Lead Android Engineer roles." />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/11062076?v=4&amp;s=460" />
+  <meta property="og:image:alt" content="Vanditkumar Patel" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Vanditkumar Patel | Senior Android Developer &amp; Tech Lead" />
+  <meta name="twitter:description" content="15+ years building high-performance Android apps for millions of users at Comcast and Elsevier. Open to Senior &amp; Lead Android Engineer roles." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/11062076?v=4&amp;s=460" />
+
+  <!-- Inline SVG favicon: "VP" monogram on the site's background color -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080D1A'/%3E%3Ctext x='32' y='44' font-family='Helvetica,Arial,sans-serif' font-size='30' font-weight='bold' text-anchor='middle' fill='%233B82F6'%3EVP%3C/text%3E%3C/svg%3E" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* ══════════════════════════════════════
        RESET & VARIABLES
@@ -39,6 +61,17 @@
 
     a { color: inherit; text-decoration: none; }
     img { display: block; }
+
+    /* visible to screen readers only */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
 
     /* ══════════════════════════════════════
        SCROLLBAR
@@ -97,8 +130,9 @@
     .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
     /* hamburger */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: 0; color: inherit; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+    .hamburger:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; border-radius: 2px; }
     .mobile-menu {
       display: none;
       position: fixed;
@@ -148,6 +182,13 @@
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
       50%       { transform: translate(20px, -20px) scale(1.05); }
+    }
+
+    /* Animating a large blur radius is one of the most expensive things to
+       composite on a mobile GPU, and these sit on the first paint. */
+    @media (max-width: 768px) {
+      .orb { animation: none; filter: blur(60px); }
+      .orb-3 { display: none; }
     }
 
     .hero-inner {
@@ -721,6 +762,24 @@
       .timeline { padding-left: 1rem; }
       .timeline-item::before { left: -1rem; width: 8px; height: 8px; }
     }
+
+    /* ══════════════════════════════════════
+       REDUCED MOTION
+    ══════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .orb { animation: none; }
+      .cursor { display: none; }
+      /* .reveal elements are shown by JS in this mode, but keep them visible
+         even if the observer never fires. */
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -735,9 +794,9 @@
     <li><a href="#projects">Apps</a></li>
     <li><a href="#contact" class="nav-cta">Hire Me</a></li>
   </ul>
-  <div class="hamburger" id="hamburger" aria-label="menu">
+  <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
@@ -765,7 +824,10 @@
     </h1>
 
     <p class="hero-role">
-      <span id="typewriter"></span><span class="cursor"></span>
+      <!-- Static text for screen readers; the animated version rewrites itself
+           constantly and would otherwise be re-announced on every keystroke. -->
+      <span class="sr-only">Senior Android Developer and Android Tech Lead</span>
+      <span id="typewriter" aria-hidden="true"></span><span class="cursor" aria-hidden="true"></span>
     </p>
 
     <p class="hero-desc">
@@ -798,7 +860,7 @@
       <div class="about-avatar-wrap reveal">
         <div class="avatar-ring">
           <div class="avatar-inner">
-            <img src="https://avatars.githubusercontent.com/u/11062076?v=4" alt="Vanditkumar Patel" />
+            <img src="https://avatars.githubusercontent.com/u/11062076?v=4&amp;s=400" alt="Vanditkumar Patel" width="400" height="400" loading="lazy" decoding="async" />
           </div>
         </div>
         <div class="about-links">
@@ -1197,15 +1259,57 @@
   <p style="margin-top:6px;">Open to Senior &amp; Lead Android Engineer opportunities &nbsp;·&nbsp; <a href="https://github.com/vandit067" target="_blank" rel="noopener" style="color:var(--blue)">github.com/vandit067</a></p>
 </footer>
 
+<!-- ═══════════════════════ STRUCTURED DATA (SEO) ═══════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Vanditkumar Patel",
+  "url": "https://vandit067.github.io/",
+  "image": "https://avatars.githubusercontent.com/u/11062076?v=4&s=460",
+  "jobTitle": "Senior Android Developer & Tech Lead",
+  "email": "mailto:vanditpatel067@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Philadelphia",
+    "addressRegion": "PA",
+    "addressCountry": "US"
+  },
+  "knowsAbout": [
+    "Android",
+    "Kotlin",
+    "Jetpack Compose",
+    "Mobile Architecture",
+    "CI/CD"
+  ],
+  "sameAs": [
+    "https://github.com/vandit067"
+  ]
+}
+</script>
+
 <!-- ═══════════════════════════════ SCRIPTS ══════════════════════════════ -->
 <script>
   // ── Hamburger menu ──────────────────────────────────────
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+
+  function setMenu(open) {
+    mobileMenu.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+
+  hamburger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
   document.querySelectorAll('.mobile-link').forEach(l =>
-    l.addEventListener('click', () => mobileMenu.classList.remove('open'))
+    l.addEventListener('click', () => setMenu(false))
   );
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      setMenu(false);
+      hamburger.focus();
+    }
+  });
 
   // ── Typewriter effect ───────────────────────────────────
   const roles = [
@@ -1240,7 +1344,10 @@
     }
     setTimeout(typeLoop, deleting ? 45 : 75);
   }
-  typeLoop();
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) tw.textContent = roles[0];
+  else typeLoop();
 
   // ── Scroll reveal ───────────────────────────────────────
   const io = new IntersectionObserver((entries) => {
@@ -1254,19 +1361,37 @@
 
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // ── Active nav link on scroll ───────────────────────────
-  const sections = document.querySelectorAll('section[id]');
+  // ── Active nav link ─────────────────────────────────────
+  // Observer-based rather than a scroll handler: reading offsetTop for every
+  // section on each scroll event forces a synchronous layout several times a
+  // frame, which is the main source of scroll jank on mobile.
   const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+  const visible = new Set();
 
-  window.addEventListener('scroll', () => {
+  function paintActive() {
+    // Topmost section currently on screen wins.
     let current = '';
     sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      if (!current && visible.has(s.id)) current = s.id;
     });
     navLinks.forEach(a => {
       a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
     });
-  });
+  }
+
+  const navH = parseInt(getComputedStyle(document.documentElement)
+    .getPropertyValue('--nav-h'), 10) || 64;
+
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) visible.add(e.target.id);
+      else visible.delete(e.target.id);
+    });
+    paintActive();
+  }, { rootMargin: (-(navH + 40)) + 'px 0px -60% 0px' });
+
+  sections.forEach(s => navIO.observe(s));
 </script>
 
 </body>

@@ -21,15 +21,17 @@ Everything is delimited by banner comments (`/* ═══ SECTION NAME ═══
 - `:root` custom properties at the top of the `<style>` block define the whole design system (`--bg`, `--surface`, `--card`, `--border`, `--blue`, `--purple`, `--cyan`, `--green`, `--text`, `--muted`, `--radius`, `--nav-h`). Use these variables instead of literal colors; the dark theme is the only theme.
 - Page sections in document order, each an `<section id="...">`: `hero`, `about`, `skills`, `experience`, `projects`, `contact`. CSS for each lives in the matching banner block.
 - Responsive rules are **not** colocated with their components — they are collected in four breakpoint blocks at the end of the `<style>` block (≤900px tablet, ≤768px mobile, ≤480px small, ≤360px very small), plus a few inline `@media` overrides. When changing layout, check whether a later breakpoint block overrides it.
+- A `prefers-reduced-motion` block sits last in the `<style>` block and blanket-disables animations/transitions. New motion generally needs no special handling, but anything that reveals content via animation does — make sure its resting state is visible there.
+- `.sr-only` (in the reset block) is the screen-reader-only utility.
 
 ## JS behaviors (bottom `<script>`)
 
 Four small vanilla-JS features, no framework:
 
-1. Hamburger toggles `.open` on `#mobile-menu`; `.mobile-link` clicks close it.
-2. Typewriter loop over the `roles` array into `#typewriter` — edit that array to change the rotating hero titles.
+1. `setMenu(open)` toggles `.open` on `#mobile-menu` and keeps the `#hamburger` button's `aria-expanded`/`aria-label` in sync — always go through it rather than touching the class directly. Escape closes and restores focus.
+2. Typewriter loop over the `roles` array into `#typewriter` — edit that array to change the rotating hero titles. Skipped under reduced motion, which renders `roles[0]` statically. The animated span is `aria-hidden`; the `.sr-only` sibling in `.hero-role` is what screen readers get, so keep the two in rough sync.
 3. `IntersectionObserver` adds `.visible` to any element with class `reveal` (one-shot; it unobserves). New animated content must carry `class="reveal"` or it will stay invisible.
-4. Scroll listener highlights the active `.nav-links a` by matching `section[id]` offsets, using inline `style.color`.
+4. A second `IntersectionObserver` highlights the active `.nav-links a` via inline `style.color`. Deliberately not a scroll handler — reading `offsetTop` per scroll event forced synchronous layout and caused mobile jank. Don't reintroduce that pattern.
 
 ## Content conventions
 
