@@ -579,6 +579,24 @@
     .project-name { font-weight: 600; font-size: 1rem; }
     .project-company { font-size: 0.8rem; color: var(--muted); }
     .project-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.65; flex: 1; }
+    /* Text-only cards in the Tools section — no Play Store link to anchor the
+       bottom, so the tag row closes the card instead. */
+    .tool-card:hover { border-color: var(--cyan); box-shadow: 0 8px 30px rgba(34,211,238,0.14); }
+    .tool-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.25rem; }
+    /* Group heading inside a section, above a projects-grid */
+    .group-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 1rem;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .group-label + .projects-grid { margin-bottom: 2.75rem; }
+    .group-note { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 400; color: var(--muted); }
     .project-link {
       display: inline-flex;
       align-items: center;
@@ -802,6 +820,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Apps</a></li>
+    <li><a href="#tools">Tools</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
   <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -814,6 +833,7 @@
   <a href="#skills" class="mobile-link">Skills</a>
   <a href="#experience" class="mobile-link">Experience</a>
   <a href="#projects" class="mobile-link">Apps</a>
+  <a href="#tools" class="mobile-link">Tools</a>
   <a href="#contact" class="mobile-link">Contact</a>
 </div>
 
@@ -987,7 +1007,7 @@
         <div class="tags">
           <span class="tag">Firebase</span><span class="tag">New Relic</span><span class="tag">Adobe Analytics</span>
           <span class="tag">Crashlytics</span><span class="tag">Bugsnag</span><span class="tag">Google Play Vitals</span>
-          <span class="tag">Hex</span><span class="tag">KPI Dashboards</span><span class="tag">Release Readiness</span>
+          <span class="tag">Hex</span><span class="tag">Amazon Redshift</span><span class="tag">SQL</span><span class="tag">KPI Dashboards</span><span class="tag">Release Readiness</span>
           <span class="tag">ANR &amp; Crash Analysis</span><span class="tag">Firebase Messaging</span>
           <span class="tag">OneSignal</span><span class="tag">AdMob</span><span class="tag">AppLovin</span>
           <span class="tag">Facebook Audience Network</span><span class="tag">Yahoo Ads Mediation</span>
@@ -1019,9 +1039,9 @@
           <span class="tag">Antigravity</span><span class="tag">Agentic Automation</span>
           <span class="tag">AI-Assisted Development</span><span class="tag">Script Automation</span>
           <span class="tag">Event Scanner</span><span class="tag">SDK Migration Tools</span>
-          <span class="tag">Doc Generation</span><span class="tag">Release Stability Tool</span>
+          <span class="tag">Claude Code Skills</span><span class="tag">Doc Generation</span><span class="tag">Release Stability Tool</span>
           <span class="tag">Code Review Tool</span><span class="tag">Ad Placement Scanner Agent</span>
-          <span class="tag">Android Target SDK Scanner Tool</span>
+          <span class="tag">Android Target SDK Scanner Tool</span><span class="tag">Monetization Review</span><span class="tag">Keyboard Parity</span><span class="tag">Merge Automation</span>
         </div>
       </div>
     </div>
@@ -1056,8 +1076,9 @@
             <li>Built agentic SDK migration tool that scans project configuration, detects required target SDK changes, and auto-generates a structured HTML document with step-by-step upgrade instructions — reducing engineer ramp-up time for SDK upgrades.</li>
             <li>Automated Slite documentation pipeline using agentic tooling: scripts scan live project metadata and push technical details (architecture, dependencies, event schemas) directly to Slite pages without manual intervention.</li>
             <li>Built a release stability tool that pulls crash and ANR data from Bugsnag and Google Play Vitals to track how each build performs against the ones before it — surfacing week-over-week and month-over-month trends, comparing against prior release versions, and producing a build-readiness verdict that turns release go/no-go into a data-backed call instead of a judgment one.</li>
-            <li>Built a product KPI dashboard in Hex covering section-level engagement and app performance, plus a scheduled job that posts new-build feature performance and build-over-build stats to a Slack channel every morning — so the whole team starts the day with the same read on release health, without anyone pulling a report.</li>
-            <li>Created additional AI-driven workflows including a code review tool, an ad placement scanner agent, and an Android Target SDK scanner tool to optimize development and debugging processes.</li>
+            <li>Built a product KPI dashboard in Hex over an Amazon Redshift warehouse, covering section-level engagement and app performance, plus a scheduled job that posts new-build feature performance and build-over-build stats to a Slack channel every morning — so the whole team starts the day with the same read on release health, without anyone pulling a report.</li>
+            <li>Authored custom Claude Code skills that run on commit and push: a code review skill checking Android standards, main-thread work, and ANR/crash-prone patterns; a monetization review skill auditing AdMob and AppLovin placements, events, and callback coverage against network best practices; and a keyboard parity skill that detects launcher-side event params, constants, and property changes needing a matching update in the keyboard repo, emitting a Markdown report for the developer to action.</li>
+            <li>Automated upstream HeliBoard merges into the keyboard repo — tracking which code is custom so those features survive untouched while most merge conflicts resolve automatically — plus AI-driven commands covering the release path: run the keyboard standalone, switch the module from app to library and build the AAR, bump version code and name, place the AAR into the launcher project with matching Gradle updates, and revert the library changes once the release ships.</li>
             <li>Mentored 3+ junior developers; reduced memory leaks 30%+ using LeakCanary and Android Profiler; maintained Bitrise CI/CD pipelines automating build, test, and release cycles.</li>
           </ul>
         </div>
@@ -1065,8 +1086,8 @@
           <span class="tl-tag">Kotlin</span><span class="tl-tag">Jetpack Compose</span><span class="tl-tag">MVVM</span>
           <span class="tl-tag">Launcher Apps</span><span class="tl-tag">Claude</span><span class="tl-tag">ChatGPT</span>
           <span class="tl-tag">GitHub Copilot</span><span class="tl-tag">Codex</span><span class="tl-tag">Antigravity</span>
-          <span class="tl-tag">Agentic Automation</span><span class="tl-tag">Hex</span><span class="tl-tag">Bugsnag</span>
-          <span class="tl-tag">Play Vitals</span><span class="tl-tag">Release Readiness</span>
+          <span class="tl-tag">Agentic Automation</span><span class="tl-tag">Hex</span><span class="tl-tag">Redshift</span><span class="tl-tag">Bugsnag</span>
+          <span class="tl-tag">Play Vitals</span><span class="tl-tag">Release Readiness</span><span class="tl-tag">Claude Code Skills</span><span class="tl-tag">HeliBoard</span><span class="tl-tag">AAR</span>
           <span class="tl-tag">Bitrise</span><span class="tl-tag">Ad Mediation</span><span class="tl-tag">Hilt</span>
         </div>
       </div>
@@ -1178,13 +1199,15 @@
       <p class="section-subtitle">Published Android applications across consumer, enterprise, and medical domains.</p>
     </div>
 
+    <h3 class="group-label reveal">Professional Work</h3>
+
     <div class="projects-grid">
 
       <div class="project-card reveal">
         <div class="project-header">
           <div class="project-icon">&#128241;</div>
           <div>
-            <h3 class="project-name">Xfinity Mobile</h3>
+            <h4 class="project-name">Xfinity Mobile</h4>
             <div class="project-company">Comcast · via Populus Group</div>
           </div>
         </div>
@@ -1197,7 +1220,7 @@
         <div class="project-header">
           <div class="project-icon">&#128222;</div>
           <div>
-            <h3 class="project-name">Xfinity Visual Voicemail</h3>
+            <h4 class="project-name">Xfinity Visual Voicemail</h4>
             <div class="project-company">Comcast · via Populus Group</div>
           </div>
         </div>
@@ -1213,7 +1236,7 @@
         <div class="project-header">
           <div class="project-icon">&#128218;</div>
           <div>
-            <h3 class="project-name">The Lancet &amp; Elsevier Apps</h3>
+            <h4 class="project-name">The Lancet &amp; Elsevier Apps</h4>
             <div class="project-company">Elsevier Inc</div>
           </div>
         </div>
@@ -1226,7 +1249,7 @@
         <div class="project-header">
           <div class="project-icon">&#9000;</div>
           <div>
-            <h3 class="project-name">Big Keyboard: EasyHomeScreen</h3>
+            <h4 class="project-name">Big Keyboard: EasyHomeScreen</h4>
             <div class="project-company">Reachmobi Inc</div>
           </div>
         </div>
@@ -1236,6 +1259,241 @@
         <a href="https://play.google.com/store/apps/details?id=com.bigkeyboardeasylauncher.biggerkeybuttonandroidlauncherapp" target="_blank" rel="noopener" class="project-link">
           &#8599; View on Play Store
         </a>
+      </div>
+
+    </div>
+
+    <h3 class="group-label reveal">Personal Projects <span class="group-note">built with AI-assisted development</span></h3>
+
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#127891;</div>
+          <div>
+            <h4 class="project-name">LearnBuddy</h4>
+            <div class="project-company">Personal &middot; Android</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Fully offline learning app for kids in grades 1&ndash;6. Kid profiles feed into per-grade subjects and topics, with text-to-speech lessons, quizzes that review right and wrong answers inline, and mastery tracking that recalculates after every session. A PIN-locked parent dashboard surfaces progress reports and weak-area drilldowns, and the whole thing is gamified with XP, streaks, badges, and a sticker book. ~130 Kotlin files, no backend &mdash; everything runs on-device via Room.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Kotlin</span><span class="tl-tag">Jetpack Compose</span>
+          <span class="tl-tag">Room</span><span class="tl-tag">Hilt</span>
+          <span class="tl-tag">DataStore</span><span class="tl-tag">Text-to-Speech</span>
+          <span class="tl-tag">Offline-first</span><span class="tl-tag">Claude Code</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#128717;</div>
+          <div>
+            <h4 class="project-name">VS-Deals</h4>
+            <div class="project-company">Personal &middot; Android</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          A personal sandbox for pushing on-device ML and adaptive UI further than production work allows. Item lookup runs against a third-party REST API, with barcode and image-based search via ML Kit and on-device translation into 10 languages at zero API cost. Material3 Adaptive layouts reflow from single- to dual-pane across phone, foldable, and tablet, and an automated ANR and crash scanner flags main-thread I/O, resource leaks, and missing timeouts before release.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Kotlin</span><span class="tl-tag">Jetpack Compose</span>
+          <span class="tl-tag">Material3 Adaptive</span><span class="tl-tag">ML Kit</span>
+          <span class="tl-tag">CameraX</span><span class="tl-tag">Retrofit</span>
+          <span class="tl-tag">Hilt</span><span class="tl-tag">Claude Code</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#128506;</div>
+          <div>
+            <h4 class="project-name">Segment Processor</h4>
+            <div class="project-company">Personal &middot; Desktop</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Cross-platform desktop tool that turns raw Excel/CSV mailing lists into styled, deduplicated, route-ordered output. SQLite-backed deduplication via composite SHA-1 hashing, proximity sorting within zip codes, and an interactive Leaflet map backed by a 41,000+ zip centroid database &mdash; draw polygons, rectangles, or circles to select a region and export it as its own segment. Runs entirely offline; geocoding is opt-in and transmits addresses only.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Python</span><span class="tl-tag">Electron</span>
+          <span class="tl-tag">SQLite</span><span class="tl-tag">Leaflet.js</span>
+          <span class="tl-tag">Excel Automation</span><span class="tl-tag">Offline-first</span>
+          <span class="tl-tag">Claude Code</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+<!-- ═════════════════════════ TOOLS & AUTOMATION ════════════════════════ -->
+<section id="tools">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Internal Tooling</div>
+      <h2 class="section-title">Tools I've Built</h2>
+      <p class="section-subtitle">AI-assisted developer tooling built in-house to change how the team ships. Descriptions only — these run against proprietary systems.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="project-card tool-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#128202;</div>
+          <div>
+            <h3 class="project-name">Release Stability Tool</h3>
+            <div class="project-company">Bugsnag &middot; Google Play Vitals</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Pulls crash and ANR data from Bugsnag and Play Vitals to track how each build performs against the ones before it. Surfaces week-over-week and month-over-month trends, compares against prior release versions, and produces a build-readiness verdict — turning release go/no-go into a data-backed call instead of a judgment one.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Bugsnag</span><span class="tl-tag">Play Vitals</span>
+          <span class="tl-tag">Release Readiness</span><span class="tl-tag">Claude</span>
+        </div>
+      </div>
+
+      <div class="project-card tool-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#128200;</div>
+          <div>
+            <h3 class="project-name">Product KPI Dashboard</h3>
+            <div class="project-company">Hex &middot; Redshift &middot; Slack</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Built in Hex over an Amazon Redshift warehouse, covering section-level product engagement and app performance, plus a scheduled job that posts new-build feature performance and build-over-build stats to a Slack channel every morning — so the whole team starts the day with the same read on release health, without anyone pulling a report.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Hex</span><span class="tl-tag">Amazon Redshift</span>
+          <span class="tl-tag">SQL</span><span class="tl-tag">KPI Dashboards</span>
+          <span class="tl-tag">Slack Automation</span><span class="tl-tag">Scheduled Jobs</span>
+        </div>
+      </div>
+
+      <div class="project-card tool-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#128269;</div>
+          <div>
+            <h3 class="project-name">Analytics Event Scanner</h3>
+            <div class="project-company">Agentic automation</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Parses every analytics event across the project and automatically tracks additions, updates, and deletions per app version with last-modified timestamps — eliminating manual audit overhead entirely.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Claude</span><span class="tl-tag">ChatGPT</span>
+          <span class="tl-tag">Script Automation</span>
+        </div>
+      </div>
+
+      <div class="project-card tool-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#11014;</div>
+          <div>
+            <h3 class="project-name">SDK Migration Tool</h3>
+            <div class="project-company">Agentic automation</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Scans project configuration, detects required target SDK changes, and auto-generates a structured HTML document with step-by-step upgrade instructions — cutting engineer ramp-up time on SDK upgrades. A companion scanner flags code affected by the target SDK bump.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Target SDK</span><span class="tl-tag">Gradle</span>
+          <span class="tl-tag">Doc Generation</span>
+        </div>
+      </div>
+
+      <div class="project-card tool-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#128221;</div>
+          <div>
+            <h3 class="project-name">Documentation Pipeline</h3>
+            <div class="project-company">Slite</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Scripts scan live project metadata and push technical details — architecture, dependencies, event schemas — straight to Slite pages without manual intervention, so documentation stops drifting from the codebase.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Slite</span><span class="tl-tag">Agentic Automation</span>
+          <span class="tl-tag">Doc Generation</span>
+        </div>
+      </div>
+
+      <div class="project-card tool-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#9989;</div>
+          <div>
+            <h3 class="project-name">Code Review Skill</h3>
+            <div class="project-company">Claude Code skill</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Runs on commit or push and reviews the current diff against Android coding standards and team conventions &mdash; flagging work sitting on the main thread that belongs on a background dispatcher, and scanning for ANR- and crash-prone patterns before the change ever reaches a human reviewer.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Claude Code Skills</span><span class="tl-tag">Code Review</span>
+          <span class="tl-tag">ANR Detection</span><span class="tl-tag">Android Standards</span>
+        </div>
+      </div>
+
+      <div class="project-card tool-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#128176;</div>
+          <div>
+            <h3 class="project-name">Monetization Review Skill</h3>
+            <div class="project-company">Claude Code skill</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Audits AdMob and AppLovin integration on every change &mdash; placements, event wiring, and callback coverage &mdash; against each network's own best practices, so a missed callback or unhandled ad lifecycle event surfaces at review time instead of showing up later as a gap in revenue reporting.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Claude Code Skills</span><span class="tl-tag">AdMob</span>
+          <span class="tl-tag">AppLovin</span><span class="tl-tag">Ad Placement Scanner</span>
+        </div>
+      </div>
+
+      <div class="project-card tool-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#128279;</div>
+          <div>
+            <h3 class="project-name">Keyboard Parity Skill</h3>
+            <div class="project-company">Claude Code skill</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Watches the launcher repo for event parameters, constants, and property changes that also need to land in the keyboard repo. When it detects drift, it writes a standalone Markdown report on commit or push for a developer to review and apply &mdash; turning a silent cross-repo failure mode into an explicit checklist.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">Claude Code Skills</span><span class="tl-tag">Cross-repo Parity</span>
+          <span class="tl-tag">Static Analysis</span>
+        </div>
+      </div>
+
+      <div class="project-card tool-card reveal">
+        <div class="project-header">
+          <div class="project-icon">&#128260;</div>
+          <div>
+            <h3 class="project-name">Keyboard Release Automation</h3>
+            <div class="project-company">Upstream merge &middot; AAR pipeline</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          Automates pulling upstream HeliBoard changes into our keyboard repo: it tracks which code is custom, leaves those features untouched, and resolves most merge conflicts on its own. A set of AI-driven commands then covers the release path end to end &mdash; run the keyboard standalone, switch the module from app to library and build the AAR, bump version code and name, drop the AAR into the launcher project and update its Gradle to match, then revert the library changes once the release ships.
+        </p>
+        <div class="tool-tags">
+          <span class="tl-tag">HeliBoard</span><span class="tl-tag">Merge Automation</span>
+          <span class="tl-tag">AAR</span><span class="tl-tag">Gradle</span>
+          <span class="tl-tag">Release Engineering</span>
+        </div>
       </div>
 
     </div>
