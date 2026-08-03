@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#080D1A; --border:#1E2D47;
+    --blue:#3B82F6; --purple:#8B5CF6; --cyan:#22D3EE; --green:#10B981;
+    --text:#F1F5F9; --muted:#94A3B8;
+  }
+  body{
+    width:1584px; height:396px;
+    background:var(--bg);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    position:relative; overflow:hidden;
+  }
+  .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.30}
+  .o1{width:560px;height:560px;background:var(--blue);top:-260px;left:-120px}
+  .o2{width:480px;height:480px;background:var(--purple);bottom:-260px;left:520px}
+  .o3{width:420px;height:420px;background:var(--cyan);top:-140px;right:-80px}
+
+  /* subtle grid texture */
+  .grid{
+    position:absolute;inset:0;
+    background-image:linear-gradient(var(--border) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--border) 1px,transparent 1px);
+    background-size:56px 56px;
+    opacity:.16;
+    mask-image:radial-gradient(ellipse 70% 100% at 50% 50%,#000 40%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 70% 100% at 50% 50%,#000 40%,transparent 100%);
+  }
+
+  /* Centred, and deliberately not near either edge: LinkedIn overlays the
+     profile photo on the lower-left of the cover and crops roughly the outer
+     20% off each side on mobile. Anything outside ~x300-1250 is at risk. */
+  .content{
+    position:absolute;
+    left:52%; top:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:2;
+  }
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:60px;font-weight:700;line-height:1.08;letter-spacing:-.5px;
+  }
+  h1 span{
+    background:linear-gradient(135deg,var(--blue) 0%,var(--purple) 55%,var(--cyan) 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .rule{
+    height:3px;width:150px;margin:22px auto;border-radius:2px;
+    background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan));
+  }
+  .stack{
+    display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+  }
+  .chip{
+    border:1px solid var(--border);
+    background:rgba(20,31,53,.75);
+    border-radius:50px;
+    padding:9px 22px;
+    font-size:20px;font-weight:600;color:var(--text);
+    white-space:nowrap;
+  }
+  .sub{
+    margin-top:20px;font-size:21px;color:var(--muted);font-weight:500;
+  }
+  .sub b{color:var(--cyan);font-weight:600}
+</style>
+</head>
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <div class="grid"></div>
+
+  <div class="content">
+    <h1>Android at <span>scale</span></h1>
+    <div class="rule"></div>
+    <div class="stack">
+      <div class="chip">Kotlin</div>
+      <div class="chip">Jetpack Compose</div>
+      <div class="chip">Clean Architecture</div>
+    </div>
+    <div class="sub">15+ years &middot; apps used by <b>millions</b> &middot; Philadelphia, PA</div>
+  </div>
+</body>
+</html>

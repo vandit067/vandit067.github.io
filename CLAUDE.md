@@ -33,19 +33,30 @@ Four small vanilla-JS features, no framework:
 3. `IntersectionObserver` adds `.visible` to any element with class `reveal` (one-shot; it unobserves). New animated content must carry `class="reveal"` or it will stay invisible.
 4. A second `IntersectionObserver` highlights the active `.nav-links a` via inline `style.color`. Deliberately not a scroll handler — reading `offsetTop` per scroll event forced synchronous layout and caused mobile jank. Don't reintroduce that pattern.
 
-## Social share image
+## Generated images
 
-`og-image.png` (1200×630) is the Open Graph / Twitter card image. It is **generated**, not hand-drawn: `og-image.html` is its source, rendered headless and screenshotted. To regenerate after editing that file:
+Two PNGs at the repo root are **generated, not hand-drawn** — each has an HTML source in `_sources/` that is rendered headless and screenshotted. Edit the `.html`, then re-render; never touch the `.png` directly.
+
+| Source | Output | Size | Used by |
+|---|---|---|---|
+| `_sources/og-image.html` | `og-image.png` | 1200×630 | `og:image` / `twitter:image` in `index.html` |
+| `_sources/linkedin-banner.html` | `linkedin-banner.png` | 1584×396 | LinkedIn profile cover — **not referenced by the site** |
 
 ```
 python3 -m http.server 8765          # from the repo root
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
   --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
   --virtual-time-budget=5000 --window-size=1200,630 \
-  --screenshot=og-image.png "http://localhost:8765/og-image.html"
+  --screenshot=og-image.png "http://localhost:8765/_sources/og-image.html"
 ```
 
-Note that `--window-size` alone does **not** set the layout viewport for a top-level page in headless Chrome — it crops instead. When screenshotting `index.html` at a specific width (e.g. to check a breakpoint), load it inside a fixed-width `<iframe>` and screenshot that wrapper. The 1200×630 case above happens to match the default viewport, so it works directly.
+The sources live in `_sources/` because GitHub Pages runs Jekyll, which skips any file or directory beginning with `_` — so they stay versioned without being served. They previously sat at the repo root, where `/og-image.html` resolved to a contentless one-screen graphic carrying the site's name; both also carry `robots: noindex, nofollow` as a fallback. Keep new render sources in `_sources/`, and do **not** add a `.nojekyll` file without moving them somewhere else first.
+
+Both sources duplicate the site's `:root` colors and font links rather than importing them — keep them in sync with `index.html` by hand when the palette changes.
+
+**Headless viewport gotcha:** `--window-size` alone does **not** set the layout viewport for a top-level page — it crops instead. Screenshotting `index.html` at a specific width (e.g. to check a breakpoint) requires loading it inside a fixed-width `<iframe>` and screenshotting that wrapper. Both image sources above hardcode their own `body` dimensions, so they render directly.
+
+**LinkedIn banner safe area:** LinkedIn overlays the profile photo on the lower-left of the cover and crops roughly the outer 20% off each side on mobile. Keep content within about x300–1250; the layout is centered at 52% for this reason.
 
 ## Content conventions
 
